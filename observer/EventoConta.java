@@ -2,15 +2,15 @@ package poo.pilares.modulo_10.desafio.observer;
 
 public class EventoConta {
 
-    private final String tipo;
+    private final TipoEvento tipo;
     private final double valor;
 
-    public EventoConta(String tipo, double valor) {
+    public EventoConta(TipoEvento tipo, double valor) {
         this.tipo = tipo;
         this.valor = valor;
     }
 
-    public String getTipo() {
+    public TipoEvento getTipo() {
         return tipo;
     }
 
