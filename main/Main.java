@@ -2,10 +2,8 @@ package poo.pilares.modulo_10.desafio.main;
 
 import poo.pilares.modulo_10.desafio.model.ContaBancaria;
 import poo.pilares.modulo_10.desafio.observer.GerenciadorNotificacao;
-import poo.pilares.modulo_10.desafio.observer.TipoEvento;
 import poo.pilares.modulo_10.desafio.observer.UsuarioObserver;
 import poo.pilares.modulo_10.desafio.observer.AuditoriaObserver;
-import poo.pilares.modulo_10.desafio.observer.EventoConta;
 import poo.pilares.modulo_10.desafio.service.ContaService;
 import poo.pilares.modulo_10.desafio.factory.ContaFactory;
 import poo.pilares.modulo_10.desafio.factory.ContaPoupancaFactory;
@@ -27,10 +25,8 @@ public class Main {
         ContaFactory factoryPoupanca = new ContaPoupancaFactory();
         ContaBancaria contaPoupanca = factoryPoupanca.criarConta("5678");
 
-
         service.realizarDeposito(contaPoupanca, 1000);
-        contaPoupanca.aplicarRendimento();
-        gerenciador.notificar(new EventoConta(TipoEvento.RENDIMENTO, contaPoupanca.getSaldo()));
+        service.aplicarRendimento(contaPoupanca);
 
         System.out.println();
 

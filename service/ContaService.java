@@ -1,5 +1,6 @@
 package poo.pilares.modulo_10.desafio.service;
 
+import poo.pilares.modulo_10.desafio.interfaces.Rendivel;
 import poo.pilares.modulo_10.desafio.exception.ValorInvalidoException;
 import poo.pilares.modulo_10.desafio.exception.SaldoInsuficienteException;
 import poo.pilares.modulo_10.desafio.logging.Logger;
@@ -43,5 +44,14 @@ public class ContaService {
         conta.debitar(valor);
         logger.log(String.format("Saque de: R$ %.2f realizado com sucesso.", valor));
         notificacao.notificar(new EventoConta(TipoEvento.SAQUE, valor));
+    }
+
+    public void aplicarRendimento(ContaBancaria conta) {
+
+        if (conta instanceof Rendivel rendivel) {
+            double valorRendimento = rendivel.aplicarRendimento();
+            logger.log(String.format("Rendimento aplicado R$ %.2f", valorRendimento));
+            notificacao.notificar(new EventoConta(TipoEvento.RENDIMENTO, valorRendimento));
+        }
     }
 }
