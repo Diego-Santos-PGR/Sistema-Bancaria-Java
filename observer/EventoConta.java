@@ -13,7 +13,6 @@ public class EventoConta {
     public TipoEvento getTipo() {
         return tipo;
     }
-
     public double getValor() {
         return valor;
     }

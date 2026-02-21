@@ -16,11 +16,12 @@ O projeot demonstra capacidade de:
 
 ## Tecnologias e Conceitos Aplicados
 
-- Java (JDK 21+)
+- Java (JDK 25+)
 - Programação Orientada a Objetos
    - Encapsulamento
    - Herança
    - Polimorfismo
+   - Abstract
 - Princípios SOLID
 - Design Patterns
    - Factory
@@ -28,10 +29,10 @@ O projeot demonstra capacidade de:
    - Singleton
 - Tratamento de Exceções customizadas
 - Organização por camadas
-- 
+
 ### Pré-requisitos
 
-- Java JDK 21 ou Superior
+- Java JDK 25
 - IDE Java (IntelliJ IDEA, Eclipse ou VS Code)
 
 ### Executando Projeto
@@ -47,14 +48,14 @@ O projeto está organizado em pacotes, seguindo boas práticas de separação de
 
 - model -> ContaBancaria - ContaPoupanca
 - service -> ContaService
-- factory -> ContaFactory
-- observer -> EventoConta -> Observer -> UsuarioObserver
-- singleton -> Logger
+- factory -> ContaFactory - ContaPoupancaFactory
+- observer -> TipoEvento (ENUM) -> EventoConta -> Observer -> UsuarioObserver -> AuditoriaObserver -> GerenciadorNotificacao
+- singleton -> Logger -> ConsoleLogger (Holder)
 - main -> Main
 
-### Estrutura e Responsabilidade
+# Estrutura e Responsabilidade
 
-### model
+## model
 
 #### Responsável pelo domínio da aplicação
 
@@ -69,7 +70,7 @@ O projeto está organizado em pacotes, seguindo boas práticas de separação de
 
 > Aplicação do SRP (Single Responsability Principle).
 
-### service
+## service
 
 #### Camada responsável por regras de negócio.
 
@@ -80,7 +81,7 @@ O projeto está organizado em pacotes, seguindo boas práticas de separação de
 
 > Centraliza a lógica e mantém o sistema desacoplado.
 
-### factory
+## factory
 
 Implementa o padrão factory para criação de contas.
 
@@ -90,9 +91,9 @@ Implementa o padrão factory para criação de contas.
 - Facilita extensão futura
 - Atende ao princípio OCP
 
-> Aplicação de OCP (Open Closed Principle)
+> Aplicação de OCP (Open/Closed Principle)
 
-### observer
+# observer
 
 Implementa o padrão Observer, permitindo que usuários sejam notificados automaticamente quando eventos ocorrem no service com depósitos ou saques.
 
@@ -107,9 +108,9 @@ Implementa o padrão Observer, permitindo que usuários sejam notificados automa
 
 > Aplicação DIP (Dependency Inversion Principle)
 
-> Aplicação OCP (Open Closed Principle)
+> Aplicação OCP (Open/Closed Principle)
 
-### logging
+# logging
 
 implementação de um Logger como Singleton, garantindo: 
 
@@ -117,7 +118,7 @@ implementação de um Logger como Singleton, garantindo:
 - Controle centralizado de logs
 - Baixo acoplamento
 
-### exception
+# exception
 
 Eceções customizadas:
 
@@ -140,7 +141,7 @@ Eceções customizadas:
 SRP - Single Responsibility Principle
 - Cada classe possui responsabilidade única
 
-OCP - Open Closed Principle
+OCP - Open/Closed Principle
 - Novos tipos de contas ou observadores podem ser adicionados sem modificar códigos existente. 
 
 LSP - Liskov Substitution Principle
