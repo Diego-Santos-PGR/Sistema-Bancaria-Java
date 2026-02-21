@@ -50,7 +50,7 @@ O projeto está organizado em pacotes, seguindo boas práticas de separação de
 - service -> ContaService
 - factory -> ContaFactory - ContaPoupancaFactory
 - observer -> TipoEvento (ENUM) -> EventoConta -> Observer -> UsuarioObserver -> AuditoriaObserver -> GerenciadorNotificacao
-- singleton -> Logger -> ConsoleLogger (Holder)
+- logging -> Logger -> ConsoleLogger (Holder)
 - main -> Main
 
 # Estrutura e Responsabilidade
