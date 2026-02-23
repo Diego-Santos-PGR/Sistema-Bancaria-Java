@@ -2,19 +2,19 @@
 
 Projeto desenvolvido com foco na consolidação de Programação Orientada a Objetos (POO), aplicação prática dos princípios SOLID e Design Patterns, estruturado como projeto de portifólio para nível Java Júnior.
 
-## Objetivo do Projeto
+# Objetivo do Projeto
 
 Simular a arquitetura de um sistema bancário simplificado, aplicando boas práticas de desenvolvimento, organização em camadas e baixo acoplamento entre componetes.
 
-O projeot demonstra capacidade de:
+# O projeto demonstra:
 
 - Modelagem Orientada a Obsjetos
 - Organização arquitetural
 - Aplicação prática de padrões de projeto
 - Separação de responsabilidade
-- Escrita de código limpo e extensível
+- Código limpo, extensível e desacoplado
 
-## Tecnologias e Conceitos Aplicados
+# Tecnologias e Conceitos Aplicados
 
 - Java (JDK 25+)
 - Programação Orientada a Objetos
@@ -30,19 +30,19 @@ O projeot demonstra capacidade de:
 - Tratamento de Exceções customizadas
 - Organização por camadas
 
-### Pré-requisitos
+# Pré-requisitos
 
 - Java JDK 25
 - IDE Java (IntelliJ IDEA, Eclipse ou VS Code)
 
-### Executando Projeto
+# Executando Projeto
 
 1. Clone o repositório
 2. Abra o projeto na IDE
 3. Localize a class 'Main'
 4. Execute o método 'main'
 
-## Estrutura do Projeto
+# Estrutura do Projeto
 
 O projeto está organizado em pacotes, seguindo boas práticas de separação de responsabilidades.
 
@@ -64,9 +64,9 @@ O projeto está organizado em pacotes, seguindo boas práticas de separação de
 
 #### Função:
 
-- Representa estado da conta
-- Executar operações básicas (creditar, debitar)
+- Representa estado da conta- 
 - implementar comportamento específico (rendimento)
+- Mantém regras estruturais da entidade
 
 > Aplicação do SRP (Single Responsability Principle).
 
@@ -79,7 +79,8 @@ O projeto está organizado em pacotes, seguindo boas práticas de separação de
 - Registro de logs
 - Disparo de eventos
 
-> Centraliza a lógica e mantém o sistema desacoplado.
+#### Centraliza a lógica e mantém o sistema desacoplado.
+> Aplicação de DIP (Dependency Inversion Principle)
 
 ## factory
 
@@ -99,12 +100,12 @@ Implementa o padrão Observer, permitindo que usuários sejam notificados automa
 
 #### Fluxo:
 
-- Uma operação é realizada
+- operação executa no Service
 - Um evento é criado
 - Observadores são notificados
 - Logger registra a operação
 
-> Permite adicionar novos tipos de notificação sem alterar regras de negócio.
+ Permite extensão sem alterar regras existentes.
 
 > Aplicação DIP (Dependency Inversion Principle)
 
@@ -112,7 +113,7 @@ Implementa o padrão Observer, permitindo que usuários sejam notificados automa
 
 # logging
 
-implementação de um Logger como Singleton, garantindo: 
+implementação de um Logger como Singleton (Holder Pattern) garantindo: 
 
 - Apenas uma instância no sistema
 - Controle centralizado de logs
@@ -138,17 +139,17 @@ Eceções customizadas:
 
 ## Onde SOLID foi aplicado:
 
-SRP - Single Responsibility Principle
+> SRP - Single Responsibility Principle
 - Cada classe possui responsabilidade única
 
-OCP - Open/Closed Principle
+> OCP - Open/Closed Principle
 - Novos tipos de contas ou observadores podem ser adicionados sem modificar códigos existente. 
 
-LSP - Liskov Substitution Principle
-- ContaPoupanca pode substituir ContaBancaria sem quebrar sistema.
+> LSP - Liskov Substitution Principle
+- ContaPoupanca e ContaCorrente pode substituir ContaBancaria sem quebrar o sistema.
 
-ISP - Interfaces Segregation Principle
-- interfaces pequenas e especificas (Observer, Logger).
+> ISP - Interfaces Segregation Principle
+- interfaces pequenas e especificas (Observer, Logger, Rendivel).
 
-DIP - Dependency Inversion Principle
+> DIP - Dependency Inversion Principle
 - Service depende de abstrações, não implementações concretas.

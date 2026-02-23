@@ -10,6 +10,12 @@ public class ContaPoupanca extends ContaBancaria implements Rendivel {
         super(numero);
     }
 
+
+    @Override
+    public boolean podeSacar(double valor) {
+        return valor > 0 && valor <= getSaldo();
+    }
+
     @Override
     public double aplicarRendimento() {
         double rendimento = getSaldo() * TAXA_RENDIMENTO;

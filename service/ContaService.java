@@ -14,8 +14,7 @@ public class ContaService {
     private final Logger logger;
     private final GerenciadorNotificacao notificacao;
 
-    private static final double VALOR_MINIMO_DEPOSITO = 1.0;
-    private static final double VALOR_MINIMO_SAQUE = 1.0;
+    private static final double VALOR_MINIMO = 1.0;
 
     public ContaService(Logger logger, GerenciadorNotificacao notificacao) {
         this.logger = logger;
@@ -24,8 +23,8 @@ public class ContaService {
 
     public void realizarDeposito(ContaBancaria conta, double valor) {
 
-        if (valor < VALOR_MINIMO_DEPOSITO) {
-            throw new ValorInvalidoException("Valor deve ser maior ou igual a R$ 1.00");
+        if (valor < VALOR_MINIMO) {
+            throw new ValorInvalidoException("Valor inválido para deposito");
         }
         conta.creditar(valor);
         logger.log(String.format("Depósito de: R$ %.2f realizado com sucesso.", valor));
@@ -34,11 +33,11 @@ public class ContaService {
 
     public void realizarSaque(ContaBancaria conta, double valor) {
 
-        if (valor < VALOR_MINIMO_SAQUE) {
+        if (valor < VALOR_MINIMO) {
             throw new ValorInvalidoException("Valor inválido para saque.");
         }
 
-        if (valor > conta.getSaldo()) {
+        if (!conta.podeSacar(valor)) {
             throw new SaldoInsuficienteException("Saldo insuficiente para saque.");
         }
         conta.debitar(valor);
@@ -49,6 +48,7 @@ public class ContaService {
     public void aplicarRendimento(ContaBancaria conta) {
 
         if (conta instanceof Rendivel rendivel) {
+
             double valorRendimento = rendivel.aplicarRendimento();
             logger.log(String.format("Rendimento aplicado R$ %.2f", valorRendimento));
             notificacao.notificar(new EventoConta(TipoEvento.RENDIMENTO, valorRendimento));

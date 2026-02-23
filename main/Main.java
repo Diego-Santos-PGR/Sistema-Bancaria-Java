@@ -1,6 +1,8 @@
 package poo.pilares.modulo_10.desafio.main;
 
+import poo.pilares.modulo_10.desafio.factory.ContaCorrenteFactory;
 import poo.pilares.modulo_10.desafio.model.ContaBancaria;
+import poo.pilares.modulo_10.desafio.model.ContaCorrente;
 import poo.pilares.modulo_10.desafio.observer.GerenciadorNotificacao;
 import poo.pilares.modulo_10.desafio.observer.UsuarioObserver;
 import poo.pilares.modulo_10.desafio.observer.AuditoriaObserver;
@@ -22,15 +24,39 @@ public class Main {
 
         ContaService service = new ContaService(logger, gerenciador);
 
+        // CONTA POUPANCA - FACTORY
         ContaFactory factoryPoupanca = new ContaPoupancaFactory();
         ContaBancaria contaPoupanca = factoryPoupanca.criarConta("5678");
 
-        service.realizarDeposito(contaPoupanca, 1000);
+        // CONTA POUPANCA - DEPOSITO
+        service.realizarDeposito(contaPoupanca, 2000);
         service.aplicarRendimento(contaPoupanca);
 
         System.out.println();
 
-        service.realizarSaque(contaPoupanca, 100);
+        // CONTA POUPANCA - SAQUE
+        service.realizarSaque(contaPoupanca, 200);
         System.out.println("Saldo atual: " + contaPoupanca.getSaldo());
+
+        System.out.println();
+
+        // CONTA CORRENTE - FACTORY
+        ContaFactory factoryCorrente = new ContaCorrenteFactory();
+        ContaBancaria contaCorrente = factoryCorrente.criarConta("1234");
+
+        // CONTA CORRENTE - DEPOSITO
+        service.realizarDeposito(contaCorrente, 1000);
+        service.aplicarRendimento(contaCorrente);
+
+        System.out.println();
+
+        // CONTA CORRENTE - SAQUE
+        service.realizarSaque(contaCorrente, 1300);
+        System.out.println("Saldo atual: " + contaCorrente.getSaldo());
+
+        // Só acessa limite se for realmente ContaCorrente
+        if (contaCorrente instanceof ContaCorrente corrente) {
+            System.out.println("Limite disponível: " + corrente.getLimiteDisponivel());
+        }
     }
 }
